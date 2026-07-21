@@ -62,7 +62,8 @@ The script:
 4. estimates abundance maps and endmember spectra;
 5. reconstructs the HSI; 
 6. saves figures, MATLAB arrays, and CSV metric summaries.
-
+## Description of the Houston dataset
+The Houston dataset and its similarity matrix, which cannot be uploaded directly because the file size exceeds 25mb, are stored in the Release on the right side of the web page.
 ## License
 This project is licensed under the **MIT License**.  See the [LICENSE](LICENSE) file for details.
 Third-party datasets remain subject to their original licenses and terms of use and are not covered by the MIT License.
