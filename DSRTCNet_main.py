@@ -48,10 +48,9 @@ end = []
 abu = []
 r = []
 
-# 设置运行次数
+# Runtime
 num_runs = 1
 
-# 设置输出路径和方法名称
 output_path = './result'
 method_name = 'DSRTCNet'
 
@@ -156,7 +155,6 @@ for run in range(1, num_runs + 1):
 
             scheduler.step()
 
-        # 保存结果
     with torch.no_grad():
         model.eval()
         abundance, endmembers, reconstructed = model(x, y)
@@ -192,14 +190,14 @@ for run in range(1, num_runs + 1):
 end = np.reshape(end, (-1, num_endmembers + 1))
 abu = np.reshape(abu, (-1, num_endmembers + 1))
 pd.DataFrame(end).to_csv(output_path + '/' + method_name + '/' + datasetnames[dataset] + '/' + datasetnames[
-    dataset] + '各端元SAD及mSAD运行结果.csv')
+    dataset] + 'endmember_SAD_results.csv')
 pd.DataFrame(abu).to_csv(output_path + '/' + method_name + '/' + datasetnames[dataset] + '/' + datasetnames[
-    dataset] + '各丰度图RMSE及mRMSE运行结果.csv')
+    dataset] + 'abundance_RMSE_results.csv')
 pd.DataFrame(r).to_csv(output_path + '/' + method_name + '/' + datasetnames[dataset] + '/' + datasetnames[
-    dataset] + '重构误差RE运行结果.csv')
+    dataset] + 'reconstruction_error_results.csv')
 
 plotAbundancesGT(hsi.abundance_gt, output_path + '/' + method_name + '/' + datasetnames[dataset] + '/' + datasetnames[
-    dataset] + '参照丰度图')
+    dataset] + 'Reference abundance')
 
 
-print('程序运行时间为:', time_end - time_start)
+print('Runtime:', time_end - time_start)
