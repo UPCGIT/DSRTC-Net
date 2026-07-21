@@ -16,20 +16,16 @@ DSRTC-Net/
 └── result/              # Generated abundance maps, endmembers, and metrics
 ```
 
-## Requirements
-The code requires Python and the following packages:
-- PyTorch
-- torchvision
-- NumPy
-- SciPy
-- pandas
-- h5py
-- Matplotlib
-Install the dependencies with:
-```bash
-pip install -r requirements.txt
-```
-For GPU execution, install the PyTorch build compatible with the local CUDA version. Before publication, replace this paragraph with the **exact environment used to reproduce the reported results**, including Python, PyTorch, CUDA, and GPU versions.
+## Environment
+
+The development environment reported by the authors was:
+
+- Python 3.9.16
+- PyTorch 2.4.1
+- CUDA 11.6
+- NVIDIA RTX 4060 GPU
+
+For a clean installation, `requirements.txt` uses the officially matched pair `torch==2.4.1` and `torchvision==0.19.1`. CUDA-enabled users should install a PyTorch build compatible with their operating system and available NVIDIA driver.
 
 ## Quick test
 A synthetic quick test is provided to verify that DSRTC-Net and DSE-Reg can complete one forward and backward pass without external datasets.
@@ -59,7 +55,17 @@ dataset = "Muffle"
 ```bash
 python test.py
 ```
-The script automatically selects the corresponding training parameters, trains DSRTC-Net, estimates abundance maps and endmembers, and saves the outputs.
+The script:
+1. loads the selected `.mat` file;
+2. initializes the decoder with the provided endmember matrix `M1`;
+3. trains DSRTC-Net using SAD, RMSE, and DSE-Reg;
+4. estimates abundance maps and endmember spectra;
+5. reconstructs the HSI; 
+6. saves figures, MATLAB arrays, and CSV metric summaries.
+
+## License
+This project is licensed under the **MIT License**.  See the [LICENSE](LICENSE) file for details.
+Third-party datasets remain subject to their original licenses and terms of use and are not covered by the MIT License.
 
 ## Contact
 For questions about the code, please contact:
