@@ -97,20 +97,9 @@ def SAD(y_true, y_pred):
 def RMSE(y_true, y_pred):
     return torch.sqrt(torch.nn.functional.mse_loss(y_true, y_pred))
 
-class NonZeroClipper(object):  #剪裁权重的类，用于确保网络的权重值在一定范围内。
+class NonZeroClipper(object): 
 
     def __call__(self, module):
-        """
-        当实例被当作函数调用时执行的操作。
-        对给定的模块（通常是神经网络的一个部分）进行操作，确保其权重在一定的范围内。
-        参数:
-        module -- 被操作的模块，通常是神经网络的层。
-        通过检查模块是否具有权重属性，如果是，则获取并修改这些权重。
-        权重数据被限制在1e-6到1之间，以防止过小或过大的权重值。
-        """
-        # 检查模块是否具有权重属性
         if hasattr(module, 'weight'):
-            # 获取模块的权重数据
             w = module.weight.data
-            # 将权重数据中的值限制在1e-6到1之间
             w.clamp_(1e-6, 1)
